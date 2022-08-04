@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import SelectGameMode from './components/GameMode';
 import './App.css';
+import MaxScore from './components/MaxScore';
+import PlayersCount from './components/PlayersCount';
+import PlayersNames from './components/PlayersNames';
 
-function App() {
+const MAX_STEPS = 4;
+
+const App = () => {
+  const [gameStep, setGameStep] = useState(1);
+
+  const onNextStep = () => {
+    if (gameStep < MAX_STEPS) {
+      setGameStep((current) => current + 1);
+    }
+  };
+
+  const onPreviousStep = () => {
+    if (gameStep > 1) {
+      setGameStep((current) => current - 1);
+    }
+  };
+
+  const renderSwitch = () => {
+    switch (gameStep) {
+      case 1:
+        return <SelectGameMode />;
+      case 2:
+        return <MaxScore />;
+      case 3:
+        return <PlayersCount />;
+      case 4:
+        return <PlayersNames />;
+      default:
+        break;
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {renderSwitch()}
+
+      <div>
+        {gameStep > 1 && (
+          <button type='button' onClick={onPreviousStep}>
+            Previous
+          </button>
+        )}
+        {gameStep < MAX_STEPS && (
+          <button type='button' onClick={onNextStep}>
+            Next
+          </button>
+        )}
+        {gameStep === MAX_STEPS && <button type='button'>Create game</button>}
+      </div>
+    </>
   );
-}
+};
 
 export default App;
