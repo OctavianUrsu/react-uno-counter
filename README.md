@@ -1,4 +1,4 @@
-![Uno Counter](https://i.imgur.com/HSaWelD.png)
+![Uno Counter](https://i.ibb.co/XC0QwHX/rsz-68747470733a2f2f692e696d6775722e636f6d2f48536157656c442e706e67.png)
 # Uno Counter
 
 # Getting Started with Create React App
